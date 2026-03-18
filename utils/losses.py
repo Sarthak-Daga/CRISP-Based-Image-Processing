@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torchvision.models as models
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -17,11 +18,15 @@ def perceptual_loss(out, target):
 
     return nn.functional.l1_loss(vgg(out), vgg(target))
 
+def color_loss(out, target):
+    return torch.mean(
+        torch.abs(
+            out.mean(dim=[2, 3]) - target.mean(dim=[2, 3])
+        )
+    )
 
 def total_loss(out, target):
-
-    l1 = nn.functional.l1_loss(out, target)
-
+    l1 = F.l1_loss(out, target)
     p = perceptual_loss(out, target)
-
-    return l1 + 0.01 * p
+    c = color_loss(out, target)
+    return l1 + 0.1 * p + 0.15 * c

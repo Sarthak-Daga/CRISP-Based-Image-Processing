@@ -9,7 +9,7 @@ from models.crisp import CRISP
 device = "cuda"
 
 root = "dataset/OrignalDataset/Usable"
-input_path = os.path.join(root, "UneditedsRGB", "a0001.png")
+input_path = os.path.join(root, "UneditedsRGB", "a0100.png")
 
 expert_folders = ["ExpertA", "ExpertB", "ExpertC", "ExpertD", "ExpertE"]
 
@@ -18,7 +18,7 @@ model = CRISP().to(device)
 
 #--------------------------------------------------------------------------------------
 # model.load_state_dict(
-#     torch.load("crisp_fivek_500samples_50ep.pth", map_location=device)
+#     torch.load("crisp_fivek_100samples_90ep.pth", map_location=device)
 # )
 #--------------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ with torch.no_grad():
     style[0, 0] = 1.0
 
     phi = model.decoder(style)
-    phi = 0.3 * phi  
+    phi = 0.6 * phi  
 
     output = model.isp(input_tensor, phi)
 

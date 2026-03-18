@@ -8,6 +8,7 @@ from utils.losses import total_loss
 from utils.fivek_datset import FiveKDataset
 from models.crisp import CRISP
 
+best_loss = float("inf")
 # -----------------------------
 # Config
 # -----------------------------
@@ -15,8 +16,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print("DEVICE =", device)
 batch_size = 4
 lr = 1e-4
-epochs = 50
-checkpoint_interval = 10
+epochs = 90
+checkpoint_interval = 15
 
 # -----------------------------
 # Dataset
@@ -55,6 +56,11 @@ if os.path.exists(checkpoint_path):
 # Training Loop
 # -----------------------------
 print("Starting training...")
+loss_log_path = "training_losses.txt"
+
+# clear file if exists
+with open(loss_log_path, "w") as f:
+    f.write("Epoch,Loss\n")
 
 for epoch in range(start_epoch, epochs):
 
@@ -81,11 +87,15 @@ for epoch in range(start_epoch, epochs):
 
     avg_loss = epoch_loss / len(train_loader)
     print(f"Epoch [{epoch+1}/{epochs}] Loss: {avg_loss:.6f}")
+    with open(loss_log_path, "a") as f:
+        f.write(f"{epoch+1},{avg_loss:.6f}\n")
 
     # -----------------------------
     # Save checkpoint every N epochs
     # -----------------------------
     if (epoch + 1) % checkpoint_interval == 0:
+        if avg_loss < best_loss:
+            best_loss = avg_loss
         torch.save({
             "epoch": epoch,
             "model_state": model.state_dict(),
@@ -94,6 +104,8 @@ for epoch in range(start_epoch, epochs):
 
         print(f"Checkpoint saved at epoch {epoch+1}")
         torch.cuda.empty_cache()
+    
+    
 
 # -----------------------------
 # Save final model
