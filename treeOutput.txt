@@ -1,0 +1,661 @@
+Folder PATH listing for volume Windows
+Volume serial number is 0E12-CD69
+C:.
+¦   crisp_checkpoint.pth
+¦   crisp_fivek_50samples_50ep.pth
+¦   dataCleaning.py
+¦   inference.py
+¦   inference_fivek.py
+¦   raw_to_png.py
+¦   test.py
+¦   torchValidation.py
+¦   train.py
+¦   treeOutput.txt
+¦   
++---dataset
+¦   ¦   data.txt
+¦   ¦   
+¦   +---OrignalDataset
+¦       +---Usable
+¦           ¦   data.txt
+¦           ¦   
+¦           +---ExpertA
+¦           ¦       a0001.png
+¦           ¦       a0002.png
+¦           ¦       a0003.png
+¦           ¦       a0004.png
+¦           ¦       a0005.png
+¦           ¦       a0006.png
+¦           ¦       a0007.png
+¦           ¦       a0008.png
+¦           ¦       a0009.png
+¦           ¦       a0010.png
+¦           ¦       a0011.png
+¦           ¦       a0012.png
+¦           ¦       a0013.png
+¦           ¦       a0014.png
+¦           ¦       a0015.png
+¦           ¦       a0016.png
+¦           ¦       a0017.png
+¦           ¦       a0018.png
+¦           ¦       a0019.png
+¦           ¦       a0020.png
+¦           ¦       a0021.png
+¦           ¦       a0022.png
+¦           ¦       a0023.png
+¦           ¦       a0024.png
+¦           ¦       a0025.png
+¦           ¦       a0026.png
+¦           ¦       a0027.png
+¦           ¦       a0028.png
+¦           ¦       a0029.png
+¦           ¦       a0030.png
+¦           ¦       a0031.png
+¦           ¦       a0032.png
+¦           ¦       a0033.png
+¦           ¦       a0034.png
+¦           ¦       a0035.png
+¦           ¦       a0036.png
+¦           ¦       a0037.png
+¦           ¦       a0038.png
+¦           ¦       a0039.png
+¦           ¦       a0040.png
+¦           ¦       a0041.png
+¦           ¦       a0042.png
+¦           ¦       a0043.png
+¦           ¦       a0044.png
+¦           ¦       a0045.png
+¦           ¦       a0046.png
+¦           ¦       a0047.png
+¦           ¦       a0048.png
+¦           ¦       a0049.png
+¦           ¦       a0050.png
+¦           ¦       a0051.png
+¦           ¦       a0052.png
+¦           ¦       a0053.png
+¦           ¦       a0054.png
+¦           ¦       a0055.png
+¦           ¦       a0056.png
+¦           ¦       a0057.png
+¦           ¦       a0058.png
+¦           ¦       a0059.png
+¦           ¦       a0060.png
+¦           ¦       a0061.png
+¦           ¦       a0062.png
+¦           ¦       a0063.png
+¦           ¦       a0064.png
+¦           ¦       a0065.png
+¦           ¦       a0066.png
+¦           ¦       a0067.png
+¦           ¦       a0068.png
+¦           ¦       a0069.png
+¦           ¦       a0070.png
+¦           ¦       a0071.png
+¦           ¦       a0072.png
+¦           ¦       a0073.png
+¦           ¦       a0074.png
+¦           ¦       a0075.png
+¦           ¦       a0076.png
+¦           ¦       a0077.png
+¦           ¦       a0078.png
+¦           ¦       a0079.png
+¦           ¦       a0080.png
+¦           ¦       a0081.png
+¦           ¦       a0082.png
+¦           ¦       a0083.png
+¦           ¦       a0084.png
+¦           ¦       a0085.png
+¦           ¦       a0086.png
+¦           ¦       a0087.png
+¦           ¦       a0088.png
+¦           ¦       a0089.png
+¦           ¦       a0090.png
+¦           ¦       a0091.png
+¦           ¦       a0092.png
+¦           ¦       a0093.png
+¦           ¦       a0094.png
+¦           ¦       a0095.png
+¦           ¦       a0096.png
+¦           ¦       a0097.png
+¦           ¦       a0098.png
+¦           ¦       a0099.png
+¦           ¦       a0100.png
+¦           ¦       
+¦           +---ExpertB
+¦           ¦       a0001.png
+¦           ¦       a0002.png
+¦           ¦       a0003.png
+¦           ¦       a0004.png
+¦           ¦       a0005.png
+¦           ¦       a0006.png
+¦           ¦       a0007.png
+¦           ¦       a0008.png
+¦           ¦       a0009.png
+¦           ¦       a0010.png
+¦           ¦       a0011.png
+¦           ¦       a0012.png
+¦           ¦       a0013.png
+¦           ¦       a0014.png
+¦           ¦       a0015.png
+¦           ¦       a0016.png
+¦           ¦       a0017.png
+¦           ¦       a0018.png
+¦           ¦       a0019.png
+¦           ¦       a0020.png
+¦           ¦       a0021.png
+¦           ¦       a0022.png
+¦           ¦       a0023.png
+¦           ¦       a0024.png
+¦           ¦       a0025.png
+¦           ¦       a0026.png
+¦           ¦       a0027.png
+¦           ¦       a0028.png
+¦           ¦       a0029.png
+¦           ¦       a0030.png
+¦           ¦       a0031.png
+¦           ¦       a0032.png
+¦           ¦       a0033.png
+¦           ¦       a0034.png
+¦           ¦       a0035.png
+¦           ¦       a0036.png
+¦           ¦       a0037.png
+¦           ¦       a0038.png
+¦           ¦       a0039.png
+¦           ¦       a0040.png
+¦           ¦       a0041.png
+¦           ¦       a0042.png
+¦           ¦       a0043.png
+¦           ¦       a0044.png
+¦           ¦       a0045.png
+¦           ¦       a0046.png
+¦           ¦       a0047.png
+¦           ¦       a0048.png
+¦           ¦       a0049.png
+¦           ¦       a0050.png
+¦           ¦       a0051.png
+¦           ¦       a0052.png
+¦           ¦       a0053.png
+¦           ¦       a0054.png
+¦           ¦       a0055.png
+¦           ¦       a0056.png
+¦           ¦       a0057.png
+¦           ¦       a0058.png
+¦           ¦       a0059.png
+¦           ¦       a0060.png
+¦           ¦       a0061.png
+¦           ¦       a0062.png
+¦           ¦       a0063.png
+¦           ¦       a0064.png
+¦           ¦       a0065.png
+¦           ¦       a0066.png
+¦           ¦       a0067.png
+¦           ¦       a0068.png
+¦           ¦       a0069.png
+¦           ¦       a0070.png
+¦           ¦       a0071.png
+¦           ¦       a0072.png
+¦           ¦       a0073.png
+¦           ¦       a0074.png
+¦           ¦       a0075.png
+¦           ¦       a0076.png
+¦           ¦       a0077.png
+¦           ¦       a0078.png
+¦           ¦       a0079.png
+¦           ¦       a0080.png
+¦           ¦       a0081.png
+¦           ¦       a0082.png
+¦           ¦       a0083.png
+¦           ¦       a0084.png
+¦           ¦       a0085.png
+¦           ¦       a0086.png
+¦           ¦       a0087.png
+¦           ¦       a0088.png
+¦           ¦       a0089.png
+¦           ¦       a0090.png
+¦           ¦       a0091.png
+¦           ¦       a0092.png
+¦           ¦       a0093.png
+¦           ¦       a0094.png
+¦           ¦       a0095.png
+¦           ¦       a0096.png
+¦           ¦       a0097.png
+¦           ¦       a0098.png
+¦           ¦       a0099.png
+¦           ¦       a0100.png
+¦           ¦       
+¦           +---ExpertC
+¦           ¦       a0001.png
+¦           ¦       a0002.png
+¦           ¦       a0003.png
+¦           ¦       a0004.png
+¦           ¦       a0005.png
+¦           ¦       a0006.png
+¦           ¦       a0007.png
+¦           ¦       a0008.png
+¦           ¦       a0009.png
+¦           ¦       a0010.png
+¦           ¦       a0011.png
+¦           ¦       a0012.png
+¦           ¦       a0013.png
+¦           ¦       a0014.png
+¦           ¦       a0015.png
+¦           ¦       a0016.png
+¦           ¦       a0017.png
+¦           ¦       a0018.png
+¦           ¦       a0019.png
+¦           ¦       a0020.png
+¦           ¦       a0021.png
+¦           ¦       a0022.png
+¦           ¦       a0023.png
+¦           ¦       a0024.png
+¦           ¦       a0025.png
+¦           ¦       a0026.png
+¦           ¦       a0027.png
+¦           ¦       a0028.png
+¦           ¦       a0029.png
+¦           ¦       a0030.png
+¦           ¦       a0031.png
+¦           ¦       a0032.png
+¦           ¦       a0033.png
+¦           ¦       a0034.png
+¦           ¦       a0035.png
+¦           ¦       a0036.png
+¦           ¦       a0037.png
+¦           ¦       a0038.png
+¦           ¦       a0039.png
+¦           ¦       a0040.png
+¦           ¦       a0041.png
+¦           ¦       a0042.png
+¦           ¦       a0043.png
+¦           ¦       a0044.png
+¦           ¦       a0045.png
+¦           ¦       a0046.png
+¦           ¦       a0047.png
+¦           ¦       a0048.png
+¦           ¦       a0049.png
+¦           ¦       a0050.png
+¦           ¦       a0051.png
+¦           ¦       a0052.png
+¦           ¦       a0053.png
+¦           ¦       a0054.png
+¦           ¦       a0055.png
+¦           ¦       a0056.png
+¦           ¦       a0057.png
+¦           ¦       a0058.png
+¦           ¦       a0059.png
+¦           ¦       a0060.png
+¦           ¦       a0061.png
+¦           ¦       a0062.png
+¦           ¦       a0063.png
+¦           ¦       a0064.png
+¦           ¦       a0065.png
+¦           ¦       a0066.png
+¦           ¦       a0067.png
+¦           ¦       a0068.png
+¦           ¦       a0069.png
+¦           ¦       a0070.png
+¦           ¦       a0071.png
+¦           ¦       a0072.png
+¦           ¦       a0073.png
+¦           ¦       a0074.png
+¦           ¦       a0075.png
+¦           ¦       a0076.png
+¦           ¦       a0077.png
+¦           ¦       a0078.png
+¦           ¦       a0079.png
+¦           ¦       a0080.png
+¦           ¦       a0081.png
+¦           ¦       a0082.png
+¦           ¦       a0083.png
+¦           ¦       a0084.png
+¦           ¦       a0085.png
+¦           ¦       a0086.png
+¦           ¦       a0087.png
+¦           ¦       a0088.png
+¦           ¦       a0089.png
+¦           ¦       a0090.png
+¦           ¦       a0091.png
+¦           ¦       a0092.png
+¦           ¦       a0093.png
+¦           ¦       a0094.png
+¦           ¦       a0095.png
+¦           ¦       a0096.png
+¦           ¦       a0097.png
+¦           ¦       a0098.png
+¦           ¦       a0099.png
+¦           ¦       a0100.png
+¦           ¦       
+¦           +---ExpertD
+¦           ¦       a0001.png
+¦           ¦       a0002.png
+¦           ¦       a0003.png
+¦           ¦       a0004.png
+¦           ¦       a0005.png
+¦           ¦       a0006.png
+¦           ¦       a0007.png
+¦           ¦       a0008.png
+¦           ¦       a0009.png
+¦           ¦       a0010.png
+¦           ¦       a0011.png
+¦           ¦       a0012.png
+¦           ¦       a0013.png
+¦           ¦       a0014.png
+¦           ¦       a0015.png
+¦           ¦       a0016.png
+¦           ¦       a0017.png
+¦           ¦       a0018.png
+¦           ¦       a0019.png
+¦           ¦       a0020.png
+¦           ¦       a0021.png
+¦           ¦       a0022.png
+¦           ¦       a0023.png
+¦           ¦       a0024.png
+¦           ¦       a0025.png
+¦           ¦       a0026.png
+¦           ¦       a0027.png
+¦           ¦       a0028.png
+¦           ¦       a0029.png
+¦           ¦       a0030.png
+¦           ¦       a0031.png
+¦           ¦       a0032.png
+¦           ¦       a0033.png
+¦           ¦       a0034.png
+¦           ¦       a0035.png
+¦           ¦       a0036.png
+¦           ¦       a0037.png
+¦           ¦       a0038.png
+¦           ¦       a0039.png
+¦           ¦       a0040.png
+¦           ¦       a0041.png
+¦           ¦       a0042.png
+¦           ¦       a0043.png
+¦           ¦       a0044.png
+¦           ¦       a0045.png
+¦           ¦       a0046.png
+¦           ¦       a0047.png
+¦           ¦       a0048.png
+¦           ¦       a0049.png
+¦           ¦       a0050.png
+¦           ¦       a0051.png
+¦           ¦       a0052.png
+¦           ¦       a0053.png
+¦           ¦       a0054.png
+¦           ¦       a0055.png
+¦           ¦       a0056.png
+¦           ¦       a0057.png
+¦           ¦       a0058.png
+¦           ¦       a0059.png
+¦           ¦       a0060.png
+¦           ¦       a0061.png
+¦           ¦       a0062.png
+¦           ¦       a0063.png
+¦           ¦       a0064.png
+¦           ¦       a0065.png
+¦           ¦       a0066.png
+¦           ¦       a0067.png
+¦           ¦       a0068.png
+¦           ¦       a0069.png
+¦           ¦       a0070.png
+¦           ¦       a0071.png
+¦           ¦       a0072.png
+¦           ¦       a0073.png
+¦           ¦       a0074.png
+¦           ¦       a0075.png
+¦           ¦       a0076.png
+¦           ¦       a0077.png
+¦           ¦       a0078.png
+¦           ¦       a0079.png
+¦           ¦       a0080.png
+¦           ¦       a0081.png
+¦           ¦       a0082.png
+¦           ¦       a0083.png
+¦           ¦       a0084.png
+¦           ¦       a0085.png
+¦           ¦       a0086.png
+¦           ¦       a0087.png
+¦           ¦       a0088.png
+¦           ¦       a0089.png
+¦           ¦       a0090.png
+¦           ¦       a0091.png
+¦           ¦       a0092.png
+¦           ¦       a0093.png
+¦           ¦       a0094.png
+¦           ¦       a0095.png
+¦           ¦       a0096.png
+¦           ¦       a0097.png
+¦           ¦       a0098.png
+¦           ¦       a0099.png
+¦           ¦       a0100.png
+¦           ¦       
+¦           +---ExpertE
+¦           ¦       a0001.png
+¦           ¦       a0002.png
+¦           ¦       a0003.png
+¦           ¦       a0004.png
+¦           ¦       a0005.png
+¦           ¦       a0006.png
+¦           ¦       a0007.png
+¦           ¦       a0008.png
+¦           ¦       a0009.png
+¦           ¦       a0010.png
+¦           ¦       a0011.png
+¦           ¦       a0012.png
+¦           ¦       a0013.png
+¦           ¦       a0014.png
+¦           ¦       a0015.png
+¦           ¦       a0016.png
+¦           ¦       a0017.png
+¦           ¦       a0018.png
+¦           ¦       a0019.png
+¦           ¦       a0020.png
+¦           ¦       a0021.png
+¦           ¦       a0022.png
+¦           ¦       a0023.png
+¦           ¦       a0024.png
+¦           ¦       a0025.png
+¦           ¦       a0026.png
+¦           ¦       a0027.png
+¦           ¦       a0028.png
+¦           ¦       a0029.png
+¦           ¦       a0030.png
+¦           ¦       a0031.png
+¦           ¦       a0032.png
+¦           ¦       a0033.png
+¦           ¦       a0034.png
+¦           ¦       a0035.png
+¦           ¦       a0036.png
+¦           ¦       a0037.png
+¦           ¦       a0038.png
+¦           ¦       a0039.png
+¦           ¦       a0040.png
+¦           ¦       a0041.png
+¦           ¦       a0042.png
+¦           ¦       a0043.png
+¦           ¦       a0044.png
+¦           ¦       a0045.png
+¦           ¦       a0046.png
+¦           ¦       a0047.png
+¦           ¦       a0048.png
+¦           ¦       a0049.png
+¦           ¦       a0050.png
+¦           ¦       a0051.png
+¦           ¦       a0052.png
+¦           ¦       a0053.png
+¦           ¦       a0054.png
+¦           ¦       a0055.png
+¦           ¦       a0056.png
+¦           ¦       a0057.png
+¦           ¦       a0058.png
+¦           ¦       a0059.png
+¦           ¦       a0060.png
+¦           ¦       a0061.png
+¦           ¦       a0062.png
+¦           ¦       a0063.png
+¦           ¦       a0064.png
+¦           ¦       a0065.png
+¦           ¦       a0066.png
+¦           ¦       a0067.png
+¦           ¦       a0068.png
+¦           ¦       a0069.png
+¦           ¦       a0070.png
+¦           ¦       a0071.png
+¦           ¦       a0072.png
+¦           ¦       a0073.png
+¦           ¦       a0074.png
+¦           ¦       a0075.png
+¦           ¦       a0076.png
+¦           ¦       a0077.png
+¦           ¦       a0078.png
+¦           ¦       a0079.png
+¦           ¦       a0080.png
+¦           ¦       a0081.png
+¦           ¦       a0082.png
+¦           ¦       a0083.png
+¦           ¦       a0084.png
+¦           ¦       a0085.png
+¦           ¦       a0086.png
+¦           ¦       a0087.png
+¦           ¦       a0088.png
+¦           ¦       a0089.png
+¦           ¦       a0090.png
+¦           ¦       a0091.png
+¦           ¦       a0092.png
+¦           ¦       a0093.png
+¦           ¦       a0094.png
+¦           ¦       a0095.png
+¦           ¦       a0096.png
+¦           ¦       a0097.png
+¦           ¦       a0098.png
+¦           ¦       a0099.png
+¦           ¦       a0100.png
+¦           ¦       
+¦           +---UneditedsRGB
+¦                   a0001.png
+¦                   a0002.png
+¦                   a0003.png
+¦                   a0004.png
+¦                   a0005.png
+¦                   a0006.png
+¦                   a0007.png
+¦                   a0008.png
+¦                   a0009.png
+¦                   a0010.png
+¦                   a0011.png
+¦                   a0012.png
+¦                   a0013.png
+¦                   a0014.png
+¦                   a0015.png
+¦                   a0016.png
+¦                   a0017.png
+¦                   a0018.png
+¦                   a0019.png
+¦                   a0020.png
+¦                   a0021.png
+¦                   a0022.png
+¦                   a0023.png
+¦                   a0024.png
+¦                   a0025.png
+¦                   a0026.png
+¦                   a0027.png
+¦                   a0028.png
+¦                   a0029.png
+¦                   a0030.png
+¦                   a0031.png
+¦                   a0032.png
+¦                   a0033.png
+¦                   a0034.png
+¦                   a0035.png
+¦                   a0036.png
+¦                   a0037.png
+¦                   a0038.png
+¦                   a0039.png
+¦                   a0040.png
+¦                   a0041.png
+¦                   a0042.png
+¦                   a0043.png
+¦                   a0044.png
+¦                   a0045.png
+¦                   a0046.png
+¦                   a0047.png
+¦                   a0048.png
+¦                   a0049.png
+¦                   a0050.png
+¦                   a0051.png
+¦                   a0052.png
+¦                   a0053.png
+¦                   a0054.png
+¦                   a0055.png
+¦                   a0056.png
+¦                   a0057.png
+¦                   a0058.png
+¦                   a0059.png
+¦                   a0060.png
+¦                   a0061.png
+¦                   a0062.png
+¦                   a0063.png
+¦                   a0064.png
+¦                   a0065.png
+¦                   a0066.png
+¦                   a0067.png
+¦                   a0068.png
+¦                   a0069.png
+¦                   a0070.png
+¦                   a0071.png
+¦                   a0072.png
+¦                   a0073.png
+¦                   a0074.png
+¦                   a0075.png
+¦                   a0076.png
+¦                   a0077.png
+¦                   a0078.png
+¦                   a0079.png
+¦                   a0080.png
+¦                   a0081.png
+¦                   a0082.png
+¦                   a0083.png
+¦                   a0084.png
+¦                   a0085.png
+¦                   a0086.png
+¦                   a0087.png
+¦                   a0088.png
+¦                   a0089.png
+¦                   a0090.png
+¦                   a0091.png
+¦                   a0092.png
+¦                   a0093.png
+¦                   a0094.png
+¦                   a0095.png
+¦                   a0096.png
+¦                   a0097.png
+¦                   a0098.png
+¦                   a0099.png
+¦                   a0100.png
+¦                   
++---models
+¦   ¦   crisp.py
+¦   ¦   encoder.py
+¦   ¦   isp.py
+¦   ¦   style_decoder.py
+¦   ¦   
+¦   +---__pycache__
+¦           crisp.cpython-310.pyc
+¦           encoder.cpython-310.pyc
+¦           isp.cpython-310.pyc
+¦           style_decoder.cpython-310.pyc
+¦           
++---results_fivek
+¦       output_ExpertA.png
+¦       output_ExpertB.png
+¦       output_ExpertC.png
+¦       output_ExpertD.png
+¦       output_ExpertE.png
+¦       
++---utils
+    ¦   dataset.py
+    ¦   fivek_datset.py
+    ¦   losses.py
+    ¦   
+    +---__pycache__
+            dataset.cpython-310.pyc
+            fivek_datset.cpython-310.pyc
+            

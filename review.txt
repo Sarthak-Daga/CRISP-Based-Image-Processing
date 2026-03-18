@@ -1,0 +1,299 @@
+import torch
+import torch.nn as nn
+from models.encoder import StyleEncoder
+from models.style_decoder import StyleDecoder
+from models.isp import ISP
+
+
+class CRISP(nn.Module):
+    def __init__(self, style_dim=5):
+        super(CRISP, self).__init__()
+
+        self.encoder = StyleEncoder(style_dim=style_dim)
+        self.decoder = StyleDecoder(style_dim=style_dim)
+        self.isp = ISP()
+
+    def forward(self, low, high=None):
+        """
+        Training:
+            low + high → learn style
+        Testing:
+            style vector provided manually (high=None)
+        """
+
+        if high is not None:
+            # Training mode
+            s = self.encoder(low, high)
+        else:
+            raise ValueError("During testing, provide style vector manually.")
+
+        phi_residual = self.decoder(s)
+        phi_residual = 5.0 * phi_residual  
+        out = self.isp(low, phi_residual)
+
+        return out, s
+import torch
+import torch.nn as nn
+
+
+class StyleDecoder(nn.Module):
+    def __init__(self, style_dim=5, hidden_dim=128, output_dim=19):
+        super(StyleDecoder, self).__init__()
+
+        self.mlp = nn.Sequential(
+            nn.Linear(style_dim, hidden_dim),
+            nn.ReLU(inplace=True),
+
+            nn.Sequential(
+            nn.Linear(hidden_dim, output_dim),
+            nn.Tanh()
+            ),
+            nn.ReLU(inplace=True),
+
+            nn.Linear(hidden_dim, output_dim)
+        )
+
+    def forward(self, s):
+        """
+        s: (B, 5)
+        returns residual ISP parameters (B, 19)
+        """
+        return self.mlp(s)
+import torch
+import torch.nn as nn
+import torchvision.models as models
+
+vgg = models.vgg16(pretrained=True).features[:16].eval()
+
+for p in vgg.parameters():
+    p.requires_grad = False
+
+
+def perceptual_loss(out, target):
+    return nn.functional.l1_loss(vgg(out), vgg(target))
+
+
+def total_loss(out, target):
+
+    l1 = nn.functional.l1_loss(out, target)
+
+    p = perceptual_loss(out, target)
+
+    return l1 + 0.1 * pimport os
+import torch
+import torch.nn.functional as F
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+from utils.losses import total_loss
+
+from utils.fivek_datset import FiveKDataset
+from models.crisp import CRISP
+
+# -----------------------------
+# Config
+# -----------------------------
+device = "cuda" if torch.cuda.is_available() else "cpu"
+batch_size = 4
+lr = 1e-4
+epochs = 120
+checkpoint_interval = 15
+
+# -----------------------------
+# Dataset
+# -----------------------------
+train_dataset = FiveKDataset("dataset/OrignalDataset/Usable")
+
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=batch_size,
+    shuffle=True,
+    num_workers=0,
+    pin_memory=True
+)
+
+# -----------------------------
+# Model
+# -----------------------------
+model = CRISP().to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
+checkpoint_path = "crisp_checkpoint.pth"
+start_epoch = 0
+
+# -----------------------------
+# Load checkpoint if exists
+# -----------------------------
+if os.path.exists(checkpoint_path):
+    print("Loading checkpoint...")
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    model.load_state_dict(checkpoint["model_state"])
+    optimizer.load_state_dict(checkpoint["optimizer_state"])
+    start_epoch = checkpoint["epoch"] + 1
+    print(f"Resuming from epoch {start_epoch}")
+
+# -----------------------------
+# Training Loop
+# -----------------------------
+for epoch in range(start_epoch, epochs):
+
+    model.train()
+    epoch_loss = 0
+
+    for low, high, expert_idx in tqdm(train_loader):
+
+        low = low.to(device)
+        high = high.to(device)
+        expert_idx = expert_idx.to(device)
+
+        optimizer.zero_grad()
+
+        # One-hot encode expert index (5 styles)
+        style = torch.nn.functional.one_hot(
+            expert_idx, num_classes=5
+        ).float().to(device)
+
+        # Forward pass
+        output, s = model(low, high)
+
+        # L1 loss (better for visual tasks)
+        loss = total_loss(output, high)
+
+        loss.backward()
+        optimizer.step()
+
+        epoch_loss += loss.item()
+
+    avg_loss = epoch_loss / len(train_loader)
+    print(f"Epoch [{epoch+1}/{epochs}] Loss: {avg_loss:.6f}")
+
+    # -----------------------------
+    # Save checkpoint every N epochs
+    # -----------------------------
+    if (epoch + 1) % checkpoint_interval == 0:
+        torch.save({
+            "epoch": epoch,
+            "model_state": model.state_dict(),
+            "optimizer_state": optimizer.state_dict(),
+        }, checkpoint_path)
+
+        print(f"Checkpoint saved at epoch {epoch+1}")
+        torch.cuda.empty_cache()
+
+# -----------------------------
+# Save final model
+# -----------------------------
+final_path = f"crisp_fivek_{len(train_dataset)}samples_{epochs}ep.pth"
+torch.save(model.state_dict(), final_path)
+
+print("Training finished.")
+print(f"Final model saved as: {final_path}")
+'''
+0   → digital gain (1)
+
+1   → white balance R
+2   → white balance B
+
+3 –>11 → 3x3 CCM (9 values)
+
+12 –>14 → CCM offset (3 values)
+
+15  → gamma
+
+16  → tone_s
+17  → tone_p1
+18  → tone_p2
+
+
+'''
+
+import torch
+import torch.nn as nn
+
+
+class ISP(nn.Module):
+    def __init__(self, eps=1e-8):
+        super(ISP, self).__init__()
+        self.eps = eps
+
+        # Define initial ISP parameters
+        phi_init = torch.zeros(19)
+
+        phi_init[0] = 1.2        # digital gain
+        phi_init[1] = 1.0        # WB R
+        phi_init[2] = 1.0        # WB B
+
+        # CCM identity
+        phi_init[3:12] = torch.tensor([
+            1,0,0,
+            0,1,0,
+            0,0,1
+        ])
+
+        phi_init[12:15] = 0      # CCM offset
+
+        phi_init[15] = 1/2.2     # gamma
+
+        phi_init[16] = 3.0       # tone_s
+        phi_init[17] = 2.0       # tone_p1
+        phi_init[18] = 3.0       # tone_p2
+
+        self.register_buffer("phi_init", phi_init)
+
+    def forward(self, x, phi):
+        phi = phi + self.phi_init
+
+        """
+        x: (B, 3, H, W)
+        phi: (B, 19)
+        """
+
+        B, C, H, W = x.shape
+
+        # -------------------------
+        # 1. Digital Gain
+        # -------------------------
+        gain = phi[:, 0].view(B, 1, 1, 1)
+        x = gain * x
+
+        # -------------------------
+        # 2. White Balance
+        # -------------------------
+        wb_r = phi[:, 1].view(B, 1, 1, 1)
+        wb_b = phi[:, 2].view(B, 1, 1, 1)
+
+        r = x[:, 0:1, :, :] * wb_r
+        g = x[:, 1:2, :, :]
+        b = x[:, 2:3, :, :] * wb_b
+
+        x = torch.cat([r, g, b], dim=1)
+
+        # -------------------------
+        # 3. Color Correction Matrix (3x3)
+        # -------------------------
+        ccm = phi[:, 3:12].view(B, 3, 3)
+        offset = phi[:, 12:15].view(B, 3, 1)
+
+        x_flat = x.view(B, 3, -1)  # (B,3,H*W)
+
+        x_ccm = torch.bmm(ccm, x_flat) + offset
+        x = x_ccm.view(B, 3, H, W)
+
+        # -------------------------
+        # 4. Gamma Correction
+        # -------------------------
+        gamma = phi[:, 15].view(B, 1, 1, 1)
+        x = torch.pow(torch.clamp(x, min=self.eps), gamma)
+
+        # -------------------------
+        # 5. Tone Mapping
+        # -------------------------
+        tone_s = phi[:, 16].view(B, 1, 1, 1)
+        tone_p1 = phi[:, 17].view(B, 1, 1, 1)
+        tone_p2 = phi[:, 18].view(B, 1, 1, 1)
+
+        x1 = tone_s * torch.pow(torch.clamp(x, min=self.eps), tone_p1)
+        x2 = (tone_s - 1) * torch.pow(torch.clamp(x, min=self.eps), tone_p2)
+
+        x = x1 - x2
+
+        return torch.clamp(x, 0.0, 1.0)
