@@ -9,7 +9,7 @@ from models.crisp import CRISP
 device = "cuda"
 
 root = "dataset/OrignalDataset/Usable"
-input_path = os.path.join(root, "UneditedsRGB", "a0100.png")
+input_path = os.path.join(root, "UneditedsRGB", "a0011.png")
 
 expert_folders = ["ExpertA", "ExpertB", "ExpertC", "ExpertD", "ExpertE"]
 
