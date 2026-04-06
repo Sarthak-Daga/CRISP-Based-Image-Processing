@@ -28,7 +28,7 @@ class CRISP(nn.Module):
             raise ValueError("During testing, provide style vector manually.")
 
         phi_residual = self.decoder(s)
-        phi_residual = 0.6 * phi_residual  
+        phi_residual = 0.5 * phi_residual  
         out = self.isp(low, phi_residual)
 
         return out, s

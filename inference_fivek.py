@@ -17,14 +17,14 @@ expert_folders = ["ExpertA", "ExpertB", "ExpertC", "ExpertD", "ExpertE"]
 model = CRISP().to(device)
 
 #--------------------------------------------------------------------------------------
-# model.load_state_dict(
-#     torch.load("crisp_fivek_100samples_90ep.pth", map_location=device)
-# )
+model.load_state_dict(
+    torch.load("crisp_fivek_100samples_90ep.pth", map_location=device)
+)
 #--------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------
-checkpoint = torch.load("crisp_checkpoint.pth", map_location=device)
-model.load_state_dict(checkpoint["model_state"])
+# checkpoint = torch.load("crisp_checkpoint.pth", map_location=device)
+# model.load_state_dict(checkpoint["model_state"])
 #--------------------------------------------------------------------------------------
 
 model.eval()
@@ -62,7 +62,7 @@ with torch.no_grad():
     style[0, 0] = 1.0
 
     phi = model.decoder(style)
-    phi = 0.6 * phi  
+    phi = 0.5 * phi  
 
     output = model.isp(input_tensor, phi)
 
