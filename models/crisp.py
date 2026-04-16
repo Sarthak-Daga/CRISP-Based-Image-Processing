@@ -3,6 +3,7 @@ import torch.nn as nn
 from models.encoder import StyleEncoder
 from models.style_decoder import StyleDecoder
 from models.isp import ISP
+from constants import phi as phi_value
 
 
 class CRISP(nn.Module):
@@ -28,7 +29,7 @@ class CRISP(nn.Module):
             raise ValueError("During testing, provide style vector manually.")
 
         phi_residual = self.decoder(s)
-        phi_residual = 0.5 * phi_residual  
+        phi_residual = phi_value() * phi_residual  
         out = self.isp(low, phi_residual)
 
         return out, s

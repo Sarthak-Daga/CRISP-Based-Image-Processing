@@ -3,13 +3,14 @@ import torch
 from torchvision.utils import save_image
 from PIL import Image
 import torchvision.transforms.functional as TF
+from constants import phi as phi_value
 
 from models.crisp import CRISP
 
 device = "cuda"
 
 root = "dataset/OrignalDataset/Usable"
-input_path = os.path.join(root, "UneditedsRGB", "a0011.png")
+input_path = os.path.join(root, "UneditedsRGB", "a0021.png")
 
 expert_folders = ["ExpertA", "ExpertB", "ExpertC", "ExpertD", "ExpertE"]
 
@@ -18,7 +19,7 @@ model = CRISP().to(device)
 
 #--------------------------------------------------------------------------------------
 model.load_state_dict(
-    torch.load("crisp_fivek_100samples_90ep.pth", map_location=device)
+    torch.load("crisp_fivek_221samples_50ep.pth", map_location=device)
 )
 #--------------------------------------------------------------------------------------
 
@@ -62,7 +63,7 @@ with torch.no_grad():
     style[0, 0] = 1.0
 
     phi = model.decoder(style)
-    phi = 0.5 * phi  
+    phi = phi_value() * phi  
 
     output = model.isp(input_tensor, phi)
 

@@ -16,8 +16,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print("DEVICE =", device)
 batch_size = 4
 lr = 1e-4
-epochs = 90
-checkpoint_interval = 15
+epochs = 50
+checkpoint_interval = 10
 
 # -----------------------------
 # Dataset

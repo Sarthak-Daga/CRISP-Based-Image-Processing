@@ -19,7 +19,7 @@ class FiveKDataset(Dataset):
         ]
 
         # ✅ LIMIT DATASET HERE (correct place)
-        self.filenames = sorted(os.listdir(self.input_dir))[:100]
+        self.filenames = sorted(os.listdir(self.input_dir))
 
         self.samples = []
 

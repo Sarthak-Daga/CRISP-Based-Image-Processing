@@ -52,13 +52,13 @@ class ISP(nn.Module):
 
     def forward(self, x, phi):
         phi = phi + self.phi_init
-        phi0 = torch.clamp(phi[:,0:1], 0.5, 2.0)
-        phi1 = torch.clamp(phi[:,1:2], 0.5, 2.0)
-        phi2 = torch.clamp(phi[:,2:3], 0.5, 2.0)
+        phi0 = torch.clamp(phi[:,0:1], 0.3, 3.0)
+        phi1 = torch.clamp(phi[:,1:2], 0.3, 3.0)
+        phi2 = torch.clamp(phi[:,2:3], 0.3, 3.0)
+
+        phi15 = torch.clamp(phi[:,15:16], 0.2, 2.5)
         
         phi_rest1 = phi[:,3:15]
-        
-        phi15 = torch.clamp(phi[:,15:16], 0.3, 1.5)
         
         phi_rest2 = phi[:,16:]
         

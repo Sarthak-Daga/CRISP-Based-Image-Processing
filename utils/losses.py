@@ -20,20 +20,24 @@ def perceptual_loss(out, target):
     return nn.functional.l1_loss(vgg(out), vgg(target))
 
 def color_loss(out, target):
-    return torch.mean(
-        torch.abs(
-            out.mean(dim=[2, 3]) - target.mean(dim=[2, 3])
-        )
-    )
+    return torch.mean(torch.abs(out - target))
+    
 
 def contrast_loss(out, target):
-    out_std = out.std(dim=[2,3])
-    target_std = target.std(dim=[2,3])
-
-    return torch.mean(torch.abs(out_std - target_std))
+    return torch.mean(torch.abs(
+        (out.max(dim=2)[0].max(dim=2)[0] - out.min(dim=2)[0].min(dim=2)[0]) -
+        (target.max(dim=2)[0].max(dim=2)[0] - target.min(dim=2)[0].min(dim=2)[0])
+    ))
 
 def ssim_loss(out, target):
     return 1 - ssim(out, target, data_range=1.0, size_average=True)
+def exposure_loss(out):
+    mean = torch.mean(out, dim=[1,2,3])
+    target = torch.full_like(mean, 0.5)
+    return torch.mean((mean - target)**2)
+
+def color_balance_loss(out, target):
+    return torch.mean(torch.abs(torch.mean(out, dim=[2,3]) - torch.mean(target, dim=[2,3])))
 
 def total_loss(out, target):
 
@@ -43,5 +47,7 @@ def total_loss(out, target):
     c = color_loss(out, target)
     k = contrast_loss(out, target)
     s = ssim_loss(out, target)
+    e = exposure_loss(out)
+    cb = color_balance_loss(out,target)
 
-    return (0.5*l1 +0.3*l2 +0.2*s +0.1*p +0.1*c +0.05*k)
+    return (0.5*l1 + 0.1*l2 + 0.3*s + 0.2*p + 0.15*c + 0.05*k + 0.1*e +0.03*cb)
