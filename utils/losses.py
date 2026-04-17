@@ -39,6 +39,15 @@ def exposure_loss(out):
 def color_balance_loss(out, target):
     return torch.mean(torch.abs(torch.mean(out, dim=[2,3]) - torch.mean(target, dim=[2,3])))
 
+def green_bias_loss(out, target):
+    out_g = torch.mean(out[:,1,:,:])
+    tgt_g = torch.mean(target[:,1,:,:])
+    return torch.abs(out_g - tgt_g)
+
+def vibrance_loss(out, target):
+    return torch.mean(torch.abs(torch.std(out, dim=[2,3]) - torch.std(target, dim=[2,3])))
+
+
 def total_loss(out, target):
 
     l1 = F.l1_loss(out, target)
@@ -49,5 +58,7 @@ def total_loss(out, target):
     s = ssim_loss(out, target)
     e = exposure_loss(out)
     cb = color_balance_loss(out,target)
+    gb = green_bias_loss(out, target)
+    v = vibrance_loss(out, target)
 
-    return (0.5*l1 + 0.1*l2 + 0.3*s + 0.2*p + 0.15*c + 0.05*k + 0.1*e +0.03*cb)
+    return (0.5*l1 + 0.1*l2 + 0.3*s + 0.2*p + 0.15*c + 0.05*k + 0.1*e +0.03*cb + 0.02*gb + 0.05*v)
