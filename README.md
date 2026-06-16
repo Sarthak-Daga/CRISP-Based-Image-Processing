@@ -2,6 +2,7 @@
 
 This project is a PyTorch implementation of a CRISP-style image enhancement model trained on the MIT FiveK dataset.  
 The goal is to learn an ISP-like transformation that converts unedited images into expert-retouched photos.
+
 Contributors : Sarthak Daga (me ofc) , Mayank kumrawat , Utkarsh Tiwari
 This repo contains:
 
